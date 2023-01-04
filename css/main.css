@@ -5,7 +5,7 @@
 }
 
 :root {
-  --gap: 1em;
+  --gap: 0.5em;
   --index: calc(1vw + 1vh);
   --color-dark: #000;
 }
@@ -19,6 +19,7 @@ body {
 }
 
 .header {
+  position: absolute;
   margin-top: 0.2em;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -30,7 +31,7 @@ body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif serif;
   font-size: calc(var(--index) * 2.8);
   font-weight: 200;
-  /* position: absolute; */
+  
 }
 
 .loader {
@@ -38,4 +39,49 @@ body {
   font-size: calc(var(--index) * 0.75);
   display: block;
   font-family: Helvetica, sans-serif;
+}
+
+.gallery {
+  width: 30vw;
+  column-width: 2em;
+  gap: var(--gap);
+  transform: scale(8.2);
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.075, 1, 0.25, 1), opacity 1s;
+}
+
+.gallery__item {
+  margin-bottom: var(--gap);
+  transform: scale(1.001);
+  will-change: transform;
+  transition: 0.3s;
+}
+
+.gallery__item:hover {
+  transform: scale(1.1);
+}
+
+.gallery__item img {
+  display: block;
+  width: 100%;
+}
+
+.loaded .gallery {
+  opacity: 1;
+}
+
+.loaded .loader {
+  opacity: 0;
+}
+
+/* Dark mode OS */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-dark);
+  }
+
+  .header {
+    filter: invert(100%);
+  }
 }
